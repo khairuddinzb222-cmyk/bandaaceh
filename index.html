@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMP Kartika XIV-1 Banda Aceh | Sekolah Berkarakter & Berprestasi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
+  
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; color: #333; background: #f5f7fa; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  /* TOP HEADER */
+  .top-header { 
+    background: #0d3b66; 
+    color: #fff; 
+    padding: 8px 0; 
+    font-size: 13px;
+  }
+  .top-header .container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .top-header .contact { display: flex; gap: 25px; flex-wrap: wrap; }
+  .top-header .social { display: flex; gap: 15px; }
+
+  /* MAIN HEADER */
+  .main-header { 
+    background: #fff; 
+    padding: 18px 0; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .main-header .container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+  .logo { display: flex; align-items: center; gap: 15px; }
+  .logo-box { 
+    width: 60px; 
+    height: 60px; 
+    background: #0d3b66; 
+    border: 3px solid #f4d35e; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #f4d35e; 
+    font-weight: 800; 
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .logo-text h1 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 22px; 
+    color: #0d3b66; 
+    font-weight: 800; 
+    margin-bottom: 3px;
+  }
+  .logo-text p { font-size: 12px; color: #666; font-weight: 500; }
+
+  /* NAVIGATION */
+  nav ul { display: flex; gap: 5px; flex-wrap: wrap; }
+  nav ul li { position: relative; }
+  nav ul li a { 
+    display: block; 
+    padding: 12px 18px; 
+    color: #333; 
+    font-weight: 600; 
+    font-size: 14px; 
+    transition: 0.3s;
+    border-radius: 6px;
+  }
+  nav ul li a:hover, nav ul li a.active { 
+    background: #0d3b66; 
+    color: #fff; 
+  }
+
+  /* HERO SLIDER - PAKAI BACKGROUND SEKOLAH */
+  .hero { 
+    height: 550px; 
+    background: linear-gradient(rgba(13, 59, 102, 0.78), rgba(13, 59, 102, 0.88)), url('./cover-sekolah.jpg') center/cover no-repeat; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    color: #fff;
+    position: relative;
+  }
+  .hero-content { max-width: 850px; padding: 0 20px; }
+  .hero .badge { 
+    display: inline-block; 
+    background: #f4d35e; 
+    color: #0d3b66; 
+    padding: 8px 22px; 
+    border-radius: 30px; 
+    font-weight: 700; 
+    font-size: 13px; 
+    margin-bottom: 25px;
+    letter-spacing: 1.5px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .hero h2 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 44px; 
+    font-weight: 800; 
+    margin-bottom: 20px; 
+    text-shadow: 3px 4px 12px rgba(0,0,0,0.5);
+    line-height: 1.3;
+  }
+  .hero p { 
+    font-size: 18px; 
+    margin-bottom: 35px; 
+    opacity: 0.95;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-primary { 
+    display: inline-block; 
+    background: #f4d35e; 
+    color: #0d3b66; 
+    padding: 14px 35px; 
+    border-radius: 50px; 
+    font-weight: 700; 
+    font-size: 15px; 
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(244, 211, 94, 0.4);
+  }
+  .btn-primary:hover { 
+    background: #fff; 
+    transform: translateY(-3px);
+  }
+
+  /* INFO BAR */
+  .info-bar {
+    background: #f4d35e;
+    padding: 25px 0;
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+    border-radius: 15px 15px 0 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .info-bar .container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 30px; 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+  }
+  .info-item { 
+    background: #fff; 
+    padding: 20px; 
+    border-radius: 10px; 
+    text-align: center; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .info-item .number { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 32px; 
+    font-weight: 800; 
+    color: #0d3b66; 
+    margin-bottom: 5px;
+  }
+  .info-item .label { font-size: 14px; color: #666; font-weight: 600; }
+
+  /* SECTION */
+  .section { padding: 80px 0; }
+  .section .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .section-title { 
+    text-align: center; 
+    margin-bottom: 50px;
+  }
+  .section-title h3 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 34px; 
+    color: #0d3b66; 
+    font-weight: 800; 
+    margin-bottom: 15px;
+  }
+
+  /* SAMBUTAN KEPALA SEKOLAH */
+  .sambutan { background: #fff; }
+  .sambutan-grid { display: grid; grid-template-columns: 350px 1fr; gap: 50px; align-items: center; }
+  .kepsek-photo { 
+    width: 100%;
+    height: 420px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 5px solid #f4d35e;
+    background: #eef5fb;
+  }
+  .kepsek-photo img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+  }
+  .kepsek-name { 
+    background: #0d3b66; 
+    color: #fff; 
+    padding: 15px; 
+    text-align: center; 
+  }
+  .kepsek-name h4 { font-family: 'Montserrat', sans-serif; font-size: 18px; margin-bottom: 5px; }
+  .kepsek-name p { font-size: 13px; opacity: 0.9; }
+  
+  .sambutan-content h3 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 32px; 
+    color: #0d3b66; 
+    margin-bottom: 25px; 
+    font-weight: 800;
+  }
+  .sambutan-content .quote { 
+    font-size: 16px; 
+    color: #555; 
+    line-height: 1.9; 
+    margin-bottom: 20px; 
+    font-style: italic;
+    border-left: 4px solid #f4d35e;
+    padding: 20px 25px;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+
+  /* GRID 3 KOLOM */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .card { 
+    background: #fff; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    transition: 0.3s;
+  }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+  .card-body { padding: 25px; }
+  .card-body h4 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px; 
+    color: #0d3b66; 
+    margin-bottom: 12px; 
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  footer { background: #0d3b66; color: #fff; padding: 60px 0 30px; }
+  .footer-grid { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    display: grid; 
+    grid-template-columns: 2fr 1fr 1fr 1fr; 
+    gap: 40px; 
+    margin-bottom: 40px;
+  }
+  footer h4 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 18px; 
+    margin-bottom: 20px; 
+    color: #f4d35e; 
+    font-weight: 700;
+  }
+  footer p, footer li { font-size: 14px; line-height: 1.8; opacity: 0.9; }
+  .footer-bottom { 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    padding-top: 25px; 
+    text-align: center; 
+    font-size: 13px; 
+    opacity: 0.8;
+  }
+
+  @media (max-width: 992px) {
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .sambutan-grid { grid-template-columns: 1fr; }
+    .info-bar .container { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+    .hero h2 { font-size: 32px; }
+  }
+  @media (max-width: 576px) {
+    .grid-3, .info-bar .container, .footer-grid { grid-template-columns: 1fr; }
+    .hero h2 { font-size: 26px; }
+    .info-bar { margin-top: 0; border-radius: 0; }
+    .hero { height: 400px; background-position: center top; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<div class="top-header">
+  <div class="container">
+    <div class="contact">
+      <span>📞 0651-3432</span>
+      <span>✉️ smpkartikaxiv1@gmail.com</span>
+      <span>📍 Jl. Nyak Adam Kamil II, Peuniti, Banda Aceh</span>
+    </div>
+    <div class="social">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN HEADER -->
+<header class="main-header">
+  <div class="container">
+    <div class="logo">
+      <div class="logo-box">SMPK</div>
+      <div class="logo-text">
+        <h1>SMP KARTIKA XIV-1</h1>
+        <p>BANDA ACEH</p>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Beranda</a></li>
+        <li><a href="#kepala-sekolah">Kepala Sekolah</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#berita">Berita</a></li>
+        <li><a href="#spmb">SPMB</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO SECTION - PAKAI BACKGROUND SEKOLAH -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="badge">TAHUN AJARAN 2026/2027</span>
+    <h2>Selamat Datang di SMP Kartika XIV-1 Banda Aceh</h2>
+    <p>Mencetak Generasi Berkarakter Mulia, Berprestasi Akademik, dan Berjiwa Patriotisme di Serambi Mekkah</p>
+    <a href="#spmb" class="btn-primary">DAFTAR SEKARANG</a>
+  </div>
+</section>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="container">
+    <div class="info-item">
+      <div class="number">60+</div>
+      <div class="label">Tahun Mengabdi</div>
+    </div>
+    <div class="info-item">
+      <div class="number">80+</div>
+      <div class="label">Siswa Aktif</div>
+    </div>
+    <div class="info-item">
+      <div class="number">15</div>
+      <div class="label">Tenaga Pendidik</div>
+    </div>
+    <div class="info-item">
+      <div class="number">15</div>
+      <div class="label">Ekstrakurikuler</div>
+    </div>
+  </div>
+</div>
+
+<!-- SAMBUTAN KEPALA SEKOLAH -->
+<section class="section sambutan" id="kepala-sekolah">
+  <div class="container">
+    <div class="sambutan-grid">
+      <div class="kepsek-photo">
+        <img src="image/kepala-sekolah.jpg" alt="Kepala Sekolah SMP Kartika XIV-1" onerror="this.src='https://placehold.co/400x500/eef5fb/0d3b66?text=Foto+Kepala+Sekolah'">
+        <div class="kepsek-name">
+          <h4>Sabriadi, S.Pd</h4>
+          <p>Kepala Sekolah</p>
+        </div>
+      </div>
+      <div class="sambutan-content">
+        <h3>Sambutan Kepala Sekolah</h3>
+        <div class="quote">
+          "Assalamualaikum Warahmatullahi Wabarakatuh. Website SMP Kartika XIV-1 Banda Aceh adalah platform digital yang tidak hanya berfungsi sebagai media informasi, tetapi juga sebagai instrumen pembentukan kepribadian siswa. Kami berkomitmen memberikan pendidikan berkualitas untuk membentuk generasi yang cerdas, berkarakter, dan berakhlak mulia."
+        </div>
+        <div class="signature" style="margin-top: 30px; text-align: right;">
+          <p style="font-weight: 700; color: #0d3b66; font-size: 16px; margin-bottom: 5px;">Sabriadi, S.Pd</p>
+          <span style="font-size: 14px; color: #666;">Kepala Sekolah SMP Kartika XIV-1 Banda Aceh</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BERITA TERBARU -->
+<section class="section" id="berita" style="background: #eef5fb;">
+  <div class="container">
+    <div class="section-title">
+      <h3>Berita & Kegiatan Terbaru</h3>
+      <p>Informasi terkini seputar kegiatan akademik dan non-akademik SMP Kartika XIV-1 Banda Aceh</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-body">
+          <h4>Upacara Bendera Peringatan Hari Pendidikan Nasional</h4>
+          <p>Siswa dan guru SMP Kartika XIV-1 melaksanakan upacara dengan khidmat di halaman sekolah...</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4>Tim Paskibra Juara 2 Lomba Tingkat Kota Banda Aceh</h4>
+          <p>Prestasi membanggakan kembali diraih oleh ekstrakurikuler Paskibra sekolah...</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h4>Pelaksanaan Asesmen Sumatif Akhir Tahun 2025/2026</h4>
+          <p>Seluruh siswa kelas VII dan VIII mengikuti asesmen sumatif dengan tertib dan lancar...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPMB SECTION -->
+<section class="section" id="spmb">
+  <div class="container">
+    <div class="section-title">
+      <h3>Penerimaan Peserta Didik Baru 2026/2027</h3>
+      <p>Segera daftarkan putra-putri Anda. Kuota terbatas!</p>
+    </div>
+    <div style="text-align: center; background: #fff; padding: 50px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+      <h4 style="font-family: 'Montserrat', sans-serif; font-size: 28px; color: #0d3b66; margin-bottom: 20px;">Pendaftaran Dibuka</h4>
+      <p style="font-size: 20px; color: #666; margin-bottom: 30px; font-weight: 600;">01 April - 30 Mei 2026</p>
+      <a href="#" class="btn-primary">Informasi Lengkap SPMB</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="kontak">
+  <div class="footer-grid">
+    <div>
+      <h4>Tentang SMP Kartika XIV-1</h4>
+      <p>SMP Kartika XIV-1 Banda Aceh adalah sekolah menengah pertama yang berkomitmen membentuk generasi muda yang cerdas, berkarakter, dan berakhlak mulia di bawah naungan Yayasan Kartika Jaya Cabang XIV Iskandar Muda.</p>
+    </div>
+    <div>
+      <h4>Link Cepat</h4>
+      <ul>
+        <li><a href="#">Profil Sekolah</a></li>
+        <li><a href="#">Struktur Organisasi</a></li>
+        <li><a href="#">Tenaga Pendidik</a></li>
+        <li><a href="#">Kalender Akademik</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Program</h4>
+      <ul>
+        <li><a href="#">Kurikulum Merdeka</a></li>
+        <li><a href="#">Ekstrakurikuler</a></li>
+        <li><a href="#">Prestasi Siswa</a></li>
+        <li><a href="#">Perpustakaan</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontak Kami</h4>
+      <ul>
+        <li>📍 Jl. Nyak Adam Kamil II, Peuniti</li>
+        <li>📞 0651-3432</li>
+        <li>✉️ smpkartikaxiv1@gmail.com</li>
+        <li>🕒 Senin - Sabtu: 08.00 - 15.00</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 SMP Kartika XIV-1 Banda Aceh. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
