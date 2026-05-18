@@ -212,6 +212,24 @@
   .galeri-item:hover { transform: scale(1.03); }
   .galeri-item img { width: 100%; height: 250px; object-fit: cover; display: block; }
 
+  /* INSTAGRAM FEED */
+  .ig-feed {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-top: 40px;
+  }
+  .ig-feed iframe {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+  }
+  .ig-btn {
+    text-align: center;
+    margin-top: 20px;
+  }
+
   /* SPMB BOX */
   .spmb-box {
     text-align: center; 
@@ -264,10 +282,10 @@
       <span>📍 Jl. Nyak Adam Kamil II, Peuniti, Banda Aceh</span>
     </div>
     <div class="social">
-  <a href="https://facebook.com" target="_blank">Facebook</a>
-  <a href="https://instagram.com/smp.kartikaxiv1" target="_blank">Instagram</a>
-  <a href="https://youtube.com" target="_blank">YouTube</a>
-</div>
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://instagram.com/smp.kartikaxiv1" target="_blank">Instagram</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+    </div>
   </div>
 </div>
 
@@ -286,6 +304,7 @@
         <li><a href="#" class="active">Beranda</a></li>
         <li><a href="#kepala-sekolah">Kepala Sekolah</a></li>
         <li><a href="#kegiatan">Kegiatan</a></li>
+        <li><a href="#instagram">Instagram</a></li>
         <li><a href="#spmb">SPMB</a></li>
         <li><a href="#kontak">Kontak</a></li>
       </ul>
@@ -364,6 +383,35 @@
         <img src="kegiatan3.jpeg" alt="Kegiatan 3" onerror="this.src='https://placehold.co/600x400/1E4D1E/fff?text=Foto+Kegiatan'">
       </div>
     </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED -->
+<section class="section" id="instagram">
+  <div class="container">
+    <div class="section-title">
+      <h3>Follow @smp.kartikaxiv1</h3>
+      <p>Lihat kegiatan terbaru kami langsung dari Instagram</p>
+    </div>
+    
+    <div class="ig-feed">
+      <!-- Ganti LINK_POSTINGAN_IG dengan link postingan IG kamu -->
+      <iframe 
+        src="https://www.instagram.com/p/DKZQbQ2P8Xj/embed" 
+        height="700" 
+        loading="lazy">
+      </iframe>
+      
+      <div class="ig-btn">
+        <a href="https://instagram.com/smp.kartikaxiv1" target="_blank" class="btn-primary">
+          Lihat Semua Postingan di Instagram
+        </a>
+      </div>
+    </div>
+    
+    <p style="text-align:center; margin-top:15px; font-size:13px; color:#666;">
+      *Untuk menampilkan 6-9 postingan sekaligus, buat widget gratis di snapwidget.com pakai akun IG sekolah
+    </p>
   </div>
 </section>
 
