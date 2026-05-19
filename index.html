@@ -234,9 +234,14 @@
     background: #fff;
   }
   .video-item iframe {
-  width: 100%;
-  aspect-ratio: 16/9; /* default landscape */
-  border: none;
+    width: 100%;
+    aspect-ratio: 16/9; /* default landscape */
+    border: none;
+  }
+  /* Khusus video portrait 9:16 */
+  .video-item.portrait iframe {
+    aspect-ratio: 9/16;
+    max-height: 600px;
   }
   .video-caption {
     background: var(--tni-hijau-tua);
@@ -304,6 +309,10 @@
   @media (max-width: 768px) {
     .video-grid { grid-template-columns: 1fr; }
     .video-item iframe { height: 220px; }
+    .video-item.portrait iframe { 
+      height: auto;
+      max-height: 500px;
+    }
   }
   @media (max-width: 576px) {
     .galeri-grid, .info-bar .container, .footer-grid { grid-template-columns: 1fr; }
@@ -438,19 +447,19 @@
     </div>
     
     <div class="video-grid">
-      <div class="video-item">
+      <div class="video-item portrait">
         <iframe 
-          src="https://youtube.com/shorts/rxFeOLrh5uA" 
-          title="Video Lomba O2SN Panjat Tebing "
+          src="https://www.youtube.com/embed/rxFeOLrh5uA" 
+          title="Video Lomba O2SN Panjat Tebing"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
         </iframe>
         <div class="video-caption">Panjat Tebing O2SN Kota Banda Aceh</div>
       </div>
 
-      <div class="video-item">
+      <div class="video-item portrait">
         <iframe 
-          src="https://youtube.com/shorts/g03ETICzECE?feature=share" 
+          src="https://www.youtube.com/embed/g03ETICzECE" 
           title="PERJUANGAN EMAS! Siswa SMP Kartika XIV-1 di Lomba Panjat Tebing O2SN 2026"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
