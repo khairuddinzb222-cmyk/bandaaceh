@@ -235,10 +235,9 @@
   }
   .video-item iframe {
     width: 100%;
-    aspect-ratio: 16/9; /* default landscape */
+    aspect-ratio: 16/9;
     border: none;
   }
-  /* Khusus video portrait 9:16 */
   .video-item.portrait iframe {
     aspect-ratio: 9/16;
     max-height: 600px;
@@ -268,6 +267,18 @@
   .ig-btn {
     text-align: center;
     margin-top: 20px;
+  }
+
+  /* FACEBOOK FEED */
+  .fb-feed {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-top: 40px;
+  }
+  .fb-feed .fb-page {
+    width: 100% !important;
   }
 
   /* SPMB BOX */
@@ -321,6 +332,12 @@
 </head>
 <body>
 
+<!-- FACEBOOK SDK - TARUH INI SETELAH TAG BODY -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
+</script>
+
 <!-- TOP HEADER -->
 <div class="top-header">
   <div class="container">
@@ -354,6 +371,7 @@
         <li><a href="#kegiatan">Kegiatan</a></li>
         <li><a href="#video-kegiatan">Video</a></li>
         <li><a href="#instagram">Instagram</a></li>
+        <li><a href="#facebook">Facebook</a></li>
         <li><a href="#spmb">SPMB</a></li>
         <li><a href="#kontak">Kontak</a></li>
       </ul>
@@ -491,10 +509,29 @@
         </a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- FACEBOOK FEED - BARU DITAMBAHKAN -->
+<section class="section" id="facebook" style="background: #e8f0e8;">
+  <div class="container">
+    <div class="section-title">
+      <h3>Ikuti Kami di Facebook</h3>
+      <p>Kegiatan dan pengumuman terbaru SMP Kartika XIV-1</p>
+    </div>
     
-    <p style="text-align:center; margin-top:15px; font-size:13px; color:#666;">
-      *Untuk menampilkan 6-9 postingan sekaligus, buat widget gratis di snapwidget.com pakai akun IG sekolah
-    </p>
+    <div class="fb-feed">
+      <div class="fb-page" 
+           data-href="GANTI_DENGAN_LINK_HALAMAN_KAMU" 
+           data-tabs="timeline" 
+           data-width="1200" 
+           data-height="700" 
+           data-small-header="false" 
+           data-adapt-container-width="true" 
+           data-hide-cover="false" 
+           data-show-facepile="true">
+      </div>
+    </div>
   </div>
 </section>
 
