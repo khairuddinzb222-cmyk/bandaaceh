@@ -180,6 +180,21 @@
     font-weight: 800; 
   }
 
+  /* KELULUSAN SECTION */
+  .kelulusan-wrapper {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--tni-emas);
+  }
+  .kelulusan-wrapper iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 10px;
+  }
+
   /* SAMBUTAN */
   .sambutan { background: #fff; }
   .sambutan-grid { display: grid; grid-template-columns: 350px 1fr; gap: 50px; align-items: center; }
@@ -371,6 +386,7 @@
       height: auto;
       max-height: 500px;
     }
+    .kelulusan-wrapper iframe { height: 800px; }
   }
   @media (max-width: 576px) {
     .galeri-grid, .info-bar .container, .footer-grid { grid-template-columns: 1fr; }
@@ -379,7 +395,7 @@
 </head>
 <body>
 
-<!-- FACEBOOK SDK - TARUH INI SETELAH TAG BODY -->
+<!-- FACEBOOK SDK -->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" 
 src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
@@ -418,6 +434,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
         <li><a href="#guru">Tenaga Pendidik</a></li>
         <li><a href="#kegiatan">Kegiatan</a></li>
         <li><a href="#video-kegiatan">Video</a></li>
+        <li><a href="#kelulusan">Kelulusan</a></li>
         <li><a href="#instagram">Instagram</a></li>
         <li><a href="#facebook">Facebook</a></li>
         <li><a href="#spmb">SPMB</a></li>
@@ -614,6 +631,24 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
     </div>
   </div>
 </section>
+
+<!-- PENGUMUMAN KELULUSAN -->
+<section class="section" id="kelulusan" style="background: #e8f0e8;">
+  <div class="container">
+    <div class="section-title">
+      <h3>Pengumuman Kelulusan Kelas 9</h3>
+      <p>Masukkan NIS dan kata sandi untuk melihat hasil kelulusan</p>
+    </div>
+    
+    <div class="kelulusan-wrapper">
+      <iframe src="kelulusan.html" loading="lazy"></iframe>
+    </div>
+    
+    <p style="text-align:center; margin-top:20px; font-size:14px; color:#666;">
+      Pastikan kamu sudah mendapat kata sandi dari wali kelas masing-masing
+    </p>
+  </div>
+</section>
   
 <!-- INSTAGRAM FEED -->
 <section class="section" id="instagram">
@@ -687,6 +722,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
         <li><a href="#">Profil Sekolah</a></li>
         <li><a href="#">Struktur Organisasi</a></li>
         <li><a href="#guru">Tenaga Pendidik</a></li>
+        <li><a href="#kelulusan">Pengumuman Kelulusan</a></li>
         <li><a href="#">Kalender Akademik</a></li>
       </ul>
     </div>
