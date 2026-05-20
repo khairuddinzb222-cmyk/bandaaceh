@@ -72,6 +72,33 @@
   }
   .logo-text p { font-size: 12px; color: #666; font-weight: 500; }
 
+  /* HAMBURGER MENU */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--tni-hijau-tua);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
   /* NAVIGATION */
   nav ul { display: flex; gap: 5px; flex-wrap: wrap; }
   nav ul li a { 
@@ -372,13 +399,39 @@
   }
   footer a:hover { color: var(--tni-emas); }
 
+  /* RESPONSIVE */
   @media (max-width: 992px) {
+    .hamburger { display: flex; }
+    nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    nav.active {
+      max-height: 500px;
+    }
+    nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 10px 0;
+    }
+    nav ul li a {
+      padding: 15px 30px;
+      border-radius: 0;
+    }
+    
     .galeri-grid { grid-template-columns: repeat(2, 1fr); }
     .sambutan-grid { grid-template-columns: 1fr; }
     .info-bar .container { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    nav { display: none; }
   }
+  
   @media (max-width: 768px) {
     .video-grid { grid-template-columns: 1fr; }
     .video-item iframe { height: 220px; }
@@ -387,9 +440,14 @@
       max-height: 500px;
     }
     .kelulusan-wrapper iframe { height: 800px; }
+    .hero h2 { font-size: 32px; }
+    .hero p { font-size: 16px; }
   }
+  
   @media (max-width: 576px) {
     .galeri-grid, .info-bar .container, .footer-grid { grid-template-columns: 1fr; }
+    .top-header .contact { font-size: 12px; }
+    .logo-text h1 { font-size: 18px; }
   }
 </style>
 </head>
@@ -427,7 +485,14 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
         <p>BANDA ACEH</p>
       </div>
     </div>
-    <nav>
+    
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <nav id="nav">
       <ul>
         <li><a href="#" class="active">Beranda</a></li>
         <li><a href="#kepala-sekolah">Kepala Sekolah</a></li>
@@ -749,6 +814,25 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
     <p>&copy; 2026 SMP Kartika XIV-1 Banda Aceh. All Rights Reserved.</p>
   </div>
 </footer>
+
+<script>
+  // Hamburger Menu Toggle
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav');
+  
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    nav.classList.toggle('active');
+  });
+  
+  // Close menu when clicking on a link
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+    });
+  });
+</script>
 
 </body>
 </html>
