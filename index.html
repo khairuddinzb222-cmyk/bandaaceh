@@ -207,19 +207,89 @@
     font-weight: 800; 
   }
 
-  /* KELULUSAN SECTION */
-  .kelulusan-wrapper {
+  /* KELULUSAN SECTION - LANGSUNG DI SINI */
+  .kelulusan-box {
+    max-width: 600px;
+    margin: 0 auto;
     background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    border-top: 5px solid var(--tni-emas);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
   }
-  .kelulusan-wrapper iframe {
+  .kelulusan-header {
+    background: #0A3D0A;
+    color: #fff;
+    text-align: center;
+    padding: 40px 30px;
+    border-bottom: 5px solid #C9A227;
+  }
+  .kelulusan-header h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .kelulusan-content { padding: 40px 30px; }
+  #login-form input {
     width: 100%;
-    height: 700px;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    outline: none;
+  }
+  #login-form input:focus { border-color: #0A3D0A; }
+  #login-form button {
+    width: 100%;
+    padding: 15px;
+    background: #C9A227;
+    color: #0A3D0A;
     border: none;
     border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .error {
+    color: #d32f2f;
+    background: #ffebee;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: none;
+  }
+  #hasil { display: none; text-align: center; }
+  .status {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 20px 0;
+    padding: 30px;
+    border-radius: 15px;
+  }
+  .lulus {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 3px solid #2e7d32;
+  }
+  .nama-siswa {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #0A3D0A;
+    margin-bottom: 10px;
+  }
+  .info {
+    color: #666;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  .btn-logout {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
   }
 
   /* SAMBUTAN */
@@ -264,9 +334,7 @@
   }
 
   /* TENAGA PENDIDIK */
-  .guru {
-    background: #fff;
-  }
+  .guru { background: #fff; }
   .guru-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -439,7 +507,6 @@
       height: auto;
       max-height: 500px;
     }
-    .kelulusan-wrapper iframe { height: 800px; }
     .hero h2 { font-size: 32px; }
     .hero p { font-size: 16px; }
   }
@@ -607,7 +674,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
         <p>Guru PAI</p>
       </div>
 
-    <div class="kartu-guru">
+      <div class="kartu-guru">
         <img src="dien.jpg" class="avatar">
         <h4>Dien Jauhari,S.Pd,M.Pd</h4>
         <p>Guru PJOK</p>
@@ -697,7 +764,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
   </div>
 </section>
 
-<!-- PENGUMUMAN KELULUSAN -->
+<!-- PENGUMUMAN KELULUSAN - LANGSUNG DI SINI, GAK PAKE IFRAME -->
 <section class="section" id="kelulusan" style="background: #e8f0e8;">
   <div class="container">
     <div class="section-title">
@@ -705,8 +772,30 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
       <p>Masukkan NIS dan kata sandi untuk melihat hasil kelulusan</p>
     </div>
     
-    <div class="kelulusan-wrapper">
-      <iframe src="kelulusan.html" loading="lazy"></iframe>
+    <div class="kelulusan-box">
+      <div class="kelulusan-header">
+        <h4>Pengumuman Kelulusan</h4>
+        <p>SMP Kartika XIV-1 Banda Aceh<br>Tahun Ajaran 2025/2026</p>
+      </div>
+
+      <div class="kelulusan-content">
+        <div id="login-form">
+          <p style="margin-bottom: 20px; text-align: center; color: #666;">
+            Masukkan NIS dan Kata Sandi yang diberikan oleh wali kelas
+          </p>
+          <input type="text" id="nis" placeholder="Masukkan NIS" autocomplete="off">
+          <input type="password" id="password" placeholder="Masukkan Kata Sandi">
+          <button onclick="cekKelulusan()">Lihat Hasil</button>
+          <div class="error" id="error">NIS atau Kata Sandi salah!</div>
+        </div>
+
+        <div id="hasil">
+          <div class="nama-siswa" id="nama-siswa"></div>
+          <div class="status lulus" id="status-kelulusan">LULUS</div>
+          <div class="info" id="info-tambahan"></div>
+          <button class="btn-logout" onclick="logout()">Cek NIS Lain</button>
+        </div>
+      </div>
     </div>
     
     <p style="text-align:center; margin-top:20px; font-size:14px; color:#666;">
@@ -754,7 +843,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
      data-width="1200" 
      data-height="700"
      data-adapt-container-width="true">
-</div>
+      </div>
     </div>
   </div>
 </section>
@@ -789,50 +878,3 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
         <li><a href="#guru">Tenaga Pendidik</a></li>
         <li><a href="#kelulusan">Pengumuman Kelulusan</a></li>
         <li><a href="#">Kalender Akademik</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Program</h4>
-      <ul>
-        <li><a href="#">Kurikulum Merdeka</a></li>
-        <li><a href="#">Ekstrakurikuler</a></li>
-        <li><a href="#">Prestasi Siswa</a></li>
-        <li><a href="#">Perpustakaan</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Kontak Kami</h4>
-      <ul>
-        <li>📍 Jl. Nyak Adam Kamil II, Peuniti</li>
-        <li>📞 0651-3432</li>
-        <li>✉️ smpkartikaxiv1@gmail.com</li>
-        <li>🕒 Senin - Sabtu: 08.00 - 15.00</li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; text-align: center; font-size: 13px; opacity: 0.8;">
-    <p>&copy; 2026 SMP Kartika XIV-1 Banda Aceh. All Rights Reserved.</p>
-  </div>
-</footer>
-
-<script>
-  // Hamburger Menu Toggle
-  const hamburger = document.getElementById('hamburger');
-  const nav = document.getElementById('nav');
-  
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    nav.classList.toggle('active');
-  });
-  
-  // Close menu when clicking on a link
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      nav.classList.remove('active');
-    });
-  });
-</script>
-
-</body>
-</html>
