@@ -221,6 +221,53 @@
     text-align: center;
   }
 
+  /* TENAGA PENDIDIK */
+  .guru {
+    background: #fff;
+  }
+  .guru-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  .kartu-guru {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    border-top: 4px solid var(--tni-emas);
+    transition: 0.3s;
+  }
+  .kartu-guru:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+  .kartu-guru .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--tni-hijau-tua);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 auto 15px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .kartu-guru h4 {
+    font-size: 18px;
+    color: var(--tni-hijau-tua);
+    margin-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .kartu-guru p {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+  }
+
   /* VIDEO KEGIATAN */
   .video-grid {
     display: grid;
@@ -368,6 +415,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
       <ul>
         <li><a href="#" class="active">Beranda</a></li>
         <li><a href="#kepala-sekolah">Kepala Sekolah</a></li>
+        <li><a href="#guru">Tenaga Pendidik</a></li>
         <li><a href="#kegiatan">Kegiatan</a></li>
         <li><a href="#video-kegiatan">Video</a></li>
         <li><a href="#instagram">Instagram</a></li>
@@ -428,6 +476,55 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
           "Assalamualaikum Warahmatullahi Wabarakatuh. Website SMP Kartika XIV-1 Banda Aceh adalah platform digital yang tidak hanya berfungsi sebagai media informasi, tetapi juga sebagai instrumen pembentukan kepribadian siswa. Kami berkomitmen memberikan pendidikan berkualitas untuk membentuk generasi yang cerdas, berkarakter, dan berakhlak mulia."
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TENAGA PENDIDIK -->
+<section class="section guru" id="guru">
+  <div class="container">
+    <div class="section-title">
+      <h3>Tenaga Pendidik</h3>
+      <p>Guru-guru hebat SMP Kartika XIV-1 Banda Aceh</p>
+    </div>
+    <div class="guru-grid">
+      
+      <div class="kartu-guru">
+        <div class="avatar">SB</div>
+        <h4>Samsul Bahri, S.Pd</h4>
+        <p>Guru Prakarya</p>
+      </div>
+
+      <div class="kartu-guru">
+        <div class="avatar">RD</div>
+        <h4>Rina Diana, S.PdI, M.Pd</h4>
+        <p>Guru Bahasa Inggris</p>
+      </div>
+
+      <div class="kartu-guru">
+        <div class="avatar">AM</div>
+        <h4>Ainal Mardhiah, S.Pd</h4>
+        <p>Guru IPA</p>
+      </div>
+
+      <div class="kartu-guru">
+        <div class="avatar">JN</div>
+        <h4>Jemi Noven, S.Pd</h4>
+        <p>Guru Seni Budaya</p>
+      </div>
+
+      <div class="kartu-guru">
+        <div class="avatar">RZ</div>
+        <h4>Ruzikna, S.Pd</h4>
+        <p>Guru Bahasa Indonesia</p>
+      </div>
+
+      <div class="kartu-guru">
+        <div class="avatar">BH</div>
+        <h4>Drs. Baihaki</h4>
+        <p>Guru PAI</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -512,7 +609,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
   </div>
 </section>
 
-<!-- FACEBOOK FEED - BARU DITAMBAHKAN -->
+<!-- FACEBOOK FEED -->
 <section class="section" id="facebook" style="background: #e8f0e8;">
   <div class="container">
     <div class="section-title">
@@ -559,7 +656,7 @@ src="https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v19.0">
       <ul>
         <li><a href="#">Profil Sekolah</a></li>
         <li><a href="#">Struktur Organisasi</a></li>
-        <li><a href="#">Tenaga Pendidik</a></li>
+        <li><a href="#guru">Tenaga Pendidik</a></li>
         <li><a href="#">Kalender Akademik</a></li>
       </ul>
     </div>
