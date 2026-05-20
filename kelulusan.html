@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengumuman Kelulusan SMP Kartika XIV-1 Banda Aceh</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, #0A3D0A, #1E4D1E);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+.container {
+    max-width: 600px;
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+.header {
+    background: #0A3D0A;
+    color: #fff;
+    text-align: center;
+    padding: 40px 30px;
+    border-bottom: 5px solid #C9A227;
+  }
+.header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+.content { padding: 40px 30px; }
+  #login-form input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    outline: none;
+  }
+  #login-form input:focus { border-color: #0A3D0A; }
+  #login-form button {
+    width: 100%;
+    padding: 15px;
+    background: #C9A227;
+    color: #0A3D0A;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+.error {
+    color: #d32f2f;
+    background: #ffebee;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: none;
+  }
+  #hasil { display: none; text-align: center; }
+.status {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 20px 0;
+    padding: 30px;
+    border-radius: 15px;
+  }
+.lulus {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 3px solid #2e7d32;
+  }
+.nama-siswa {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #0A3D0A;
+    margin-bottom: 10px;
+  }
+.info {
+    color: #666;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+.btn-logout {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #999;
+    font-size: 13px;
+    border-top: 1px solid #eee;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Pengumuman Kelulusan</h1>
+    <p>SMP Kartika XIV-1 Banda Aceh<br>Tahun Ajaran 2025/2026</p>
+  </div>
+
+  <div class="content">
+    <div id="login-form">
+      <p style="margin-bottom: 20px; text-align: center; color: #666;">
+        Masukkan NIS dan Kata Sandi yang diberikan oleh wali kelas
+      </p>
+      <input type="text" id="nis" placeholder="Masukkan NIS" autocomplete="off">
+      <input type="password" id="password" placeholder="Masukkan Kata Sandi">
+      <button onclick="cekKelulusan()">Lihat Hasil</button>
+      <div class="error" id="error">NIS atau Kata Sandi salah!</div>
+    </div>
+
+    <div id="hasil">
+      <div class="nama-siswa" id="nama-siswa"></div>
+      <div class="status lulus" id="status-kelulusan">LULUS</div>
+      <div class="info" id="info-tambahan"></div>
+      <button class="btn-logout" onclick="logout()">Cek NIS Lain</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 SMP Kartika XIV-1 Banda Aceh
+  </div>
+</div>
+
+<script>
+// DATA SISWA - SUDAH DIISI DARI FILE EXCEL
+const dataSiswa = {
+  "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5441": { password: "siswa007", nama: "Khalista Zahira", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5488": { password: "siswa008", nama: "LIDYA NATACHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5422": { password: "siswa009", nama: "M. Ahyar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5423": { password: "siswa010", nama: "M. FERY MARSA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5520": { password: "siswa011", nama: "Muhammad Affan Althariq Tarigan", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5429": { password: "siswa014", nama: "NADIYATUL MISRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5490": { password: "siswa015", nama: "NUR AISYAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5517": { password: "siswa016", nama: "OLAN FIRWANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5526": { password: "siswa018", nama: "Rifa Farizah", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5430": { password: "siswa019", nama: "SYAFA AULIA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+  "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
+};
+
+function cekKelulusan() {
+  const nis = document.getElementById('nis').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const error = document.getElementById('error');
+
+  if (dataSiswa[nis] && dataSiswa[nis].password === password) {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('hasil').style.display = 'block';
+    document.getElementById('nama-siswa').textContent = dataSiswa[nis].nama;
+    document.getElementById('info-tambahan').textContent = dataSiswa[nis].keterangan;
+    error.style.display = 'none';
+  } else {
+    error.style.display = 'block';
+  }
+}
+
+function logout() {
+  document.getElementById('login-form').style.display = 'block';
+  document.getElementById('hasil').style.display = 'none';
+  document.getElementById('nis').value = '';
+  document.getElementById('password').value = '';
+}
+
+document.getElementById('password').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') cekKelulusan();
+});
+</script>
+
+</body>
+</html>
