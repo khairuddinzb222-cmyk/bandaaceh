@@ -2,7 +2,7 @@
 <section class="section" id="kelulusan" style="background: #e8f0e8;">
   <div class="container">
     <div class="section-title">
-      <h3 id="admin-trigger" style="cursor:pointer;">Pengumuman Kelulusan Kelas 9</h3>
+      <h3 id="admin-trigger" style="cursor:pointer; user-select:none;">Pengumuman Kelulusan Kelas 9</h3>
       <p id="kelulusan-subtext">Halaman akan dibuka sesuai jadwal resmi sekolah</p>
     </div>
 
@@ -75,15 +75,26 @@
 
   // TOMBOL RAHASIA ADMIN: Ketuk judul 5x
   let tapCount = 0;
-  document.getElementById('admin-trigger').addEventListener('click', function() {
+  const trigger = document.getElementById('admin-trigger');
+
+  function unlockAdmin() {
+    document.getElementById('countdown-wrapper').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('kelulusan-subtext').innerText = 'Mode Admin Aktif';
+    tapCount = 0;
+  }
+
+  trigger.addEventListener('touchstart', function(e) {
+    e.preventDefault();
     tapCount++;
-    if (tapCount >= 5) {
-      document.getElementById('countdown-wrapper').style.display = 'none';
-      document.getElementById('login-form').style.display = 'block';
-      document.getElementById('kelulusan-subtext').innerText = 'Mode Admin Aktif';
-      tapCount = 0;
-    }
-    setTimeout(() => { tapCount = 0; }, 2000); // reset kalau jeda >2 detik
+    if (tapCount >= 5) unlockAdmin();
+    setTimeout(() => { tapCount = 0; }, 2000);
+  });
+
+  trigger.addEventListener('click', function(e) {
+    tapCount++;
+    if (tapCount >= 5) unlockAdmin();
+    setTimeout(() => { tapCount = 0; }, 2000);
   });
 
   window.cekKelulusan = function() {
