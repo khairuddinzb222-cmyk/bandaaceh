@@ -54,8 +54,8 @@
 
 <script>
   // SETTING WAKTU BUKA PENGUMUMAN DI SINI
-  const waktuBuka = new Date(2026, 4, 22, 18, 0, 0); // 22 Mei 2026, 18:00 WIB. Bulan Mei = 4
-  const waktuBukaMs = waktuBuka.getTime();
+  const waktuBuka = new Date(2026, 4, 22, 18, 0, 0); // 22 Mei 2026 18:00 WIB = 22 Mei 2026 11:00 UTC
+const waktuBuka = new Date(Date.UTC(2026, 4, 22, 11, 0, 0));
 
   // Fungsi utama dijalankan setelah HTML selesai load
   document.addEventListener('DOMContentLoaded', function() {
