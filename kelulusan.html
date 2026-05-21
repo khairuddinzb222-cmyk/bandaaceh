@@ -15,14 +15,9 @@
       <div class="kelulusan-content">
 
         <!-- 1. TAMPILAN SEBELUM WAKTUNYA -->
-        <div id="countdown-wrapper">
-          <p style="text-align:center; font-size:18px; margin-bottom:20px;">Pengumuman akan dibuka dalam:</p>
-          <div id="countdown" style="display:flex; justify-content:center; gap:20px; text-align:center;">
-            <div><div id="days" style="font-size:36px; font-weight:800; color:#0A3D0A;">0</div><div>Hari</div></div>
-            <div><div id="hours" style="font-size:36px; font-weight:800; color:#0A3D0A;">0</div><div>Jam</div></div>
-            <div><div id="minutes" style="font-size:36px; font-weight:800; color:#0A3D0A;">0</div><div>Menit</div></div>
-            <div><div id="seconds" style="font-size:36px; font-weight:800; color:#0A3D0A;">0</div><div>Detik</div></div>
-          </div>
+        <div id="countdown-wrapper" style="text-align:center; padding:40px 20px;">
+          <h2 style="color:#B91C1C; margin-bottom:15px;">Maaf, belum waktunya mengakses halaman kelulusan.</h2>
+          <p style="font-size:16px; color:#333;">Tunggu hingga jadwal yang telah ditentukan.</p>
         </div>
 
         <!-- 2. TAMPILAN SETELAH WAKTUNYA -->
@@ -36,7 +31,7 @@
           <div class="error" id="error">NIS atau Kata Sandi salah!</div>
         </div>
 
-        <div id="hasil">
+        <div id="hasil" style="display:none;">
           <div class="nama-siswa" id="nama-siswa"></div>
           <div class="status lulus" id="status-kelulusan">LULUS</div>
           <div class="info" id="info-tambahan"></div>
@@ -61,31 +56,25 @@
   const loginForm = document.getElementById('login-form');
   const subtext = document.getElementById('kelulusan-subtext');
 
-  // Update countdown tiap 1 detik
-  const x = setInterval(function() {
+  // Cek waktu saat halaman dibuka
+  function cekWaktu() {
     const sekarang = new Date().getTime();
-    const jarak = waktuBuka - sekarang;
 
-    // Kalau waktu sudah lewat
-    if (jarak < 0) {
-      clearInterval(x);
+    if (sekarang >= waktuBuka) {
+      // Sudah waktunya
       countdownWrapper.style.display = "none";
       loginForm.style.display = "block";
       subtext.innerText = "Masukkan NIS dan kata sandi untuk melihat hasil kelulusan";
-      return;
+    } else {
+      // Belum waktunya
+      countdownWrapper.style.display = "block";
+      loginForm.style.display = "none";
+      subtext.innerText = "Halaman akan dibuka sesuai jadwal resmi sekolah";
     }
+  }
 
-    // Hitung hari, jam, menit, detik
-    const days = Math.floor(jarak / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((jarak % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((jarak % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((jarak % (1000 * 60)) / 1000);
-
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
-  }, 1000);
+  // Jalankan saat load
+  cekWaktu();
 
   // DATA SISWA - SUDAH DIISI DARI FILE EXCEL
   const dataSiswa = {
