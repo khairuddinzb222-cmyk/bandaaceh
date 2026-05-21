@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMP Kartika XIV-1 Banda Aceh | Sekolah Berkarakter & Berprestasi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Open Sans', sans-serif; color: #333; background: #f0f4f0; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  :root {
+    --tni-hijau-tua: #0A3D0A;
+    --tni-hijau-muda: #1E4D1E;
+    --tni-emas: #C9A227;
+  }
+
+ .top-header {
+    background: var(--tni-hijau-tua);
+    color: #fff;
+    padding: 8px 0;
+    font-size: 13px;
+  }
+ .top-header.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+ .main-header {
+    background: #fff;
+    padding: 18px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+ .main-header.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ .logo { display: flex; align-items: center; gap: 15px; }
+ .logo img { width: 60px; height: 60px; object-fit: contain; }
+ .logo-text h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: var(--tni-hijau-tua);
+    font-weight: 800;
+  }
+
+ .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+ .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--tni-hijau-tua);
+    border-radius: 2px;
+  }
+
+  nav ul { display: flex; gap: 5px; flex-wrap: wrap; }
+  nav ul li a {
+    display: block;
+    padding: 12px 18px;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+  nav ul li a:hover, nav ul li a.active {
+    background: var(--tni-hijau-tua);
+    color: #fff;
+  }
+
+ .hero {
+    height: 550px;
+    background: linear-gradient(rgba(10, 61, 10, 0.85), rgba(10, 61, 10, 0.90)), url('./cover-sekolah.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+ .hero-content { max-width: 850px; padding: 0 20px; }
+ .hero h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+ .section { padding: 80px 0; }
+ .section.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+ .section-title { text-align: center; margin-bottom: 50px; }
+ .section-title h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 34px;
+    color: var(--tni-hijau-tua);
+    font-weight: 800;
+  }
+
+  /* KELULUSAN */
+ .kelulusan-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+ .kelulusan-header {
+    background: #0A3D0A;
+    color: #fff;
+    text-align: center;
+    padding: 40px 30px;
+    border-bottom: 5px solid #C9A227;
+  }
+ .kelulusan-header h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+ .kelulusan-content { padding: 40px 30px; }
+  #login-form input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    outline: none;
+  }
+  #login-form input:focus { border-color: #0A3D0A; }
+  #login-form button {
+    width: 100%;
+    padding: 15px;
+    background: #C9A227;
+    color: #0A3D0A;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+ .error {
+    color: #d32f2f;
+    background: #ffebee;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: none;
+  }
+  #hasil { display: none; text-align: center; }
+ .status {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 20px 0;
+    padding: 30px;
+    border-radius: 15px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 3px solid #2e7d32;
+  }
+ .nama-siswa {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    color: #0A3D0A;
+    margin-bottom: 10px;
+  }
+ .info {
+    color: #666;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+ .btn-logout {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  @media (max-width: 992px) {
+   .hamburger { display: flex; }
+    nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    nav.active { max-height: 500px; }
+    nav ul { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-header">
+  <div class="container">
+    <div class="contact">
+      <span>📞 0651-3432</span>
+      <span>✉️ smpkartikaxiv1@gmail.com</span>
+      <span>📍 Jl. Nyak Adam Kamil II, Peuniti, Banda Aceh</span>
+    </div>
+  </div>
+</div>
+
+<header class="main-header">
+  <div class="container">
+    <div class="logo">
+      <img src="logo-smp-kartika.png" alt="Logo SMP Kartika XIV-1">
+      <div class="logo-text">
+        <h1>SMP KARTIKA XIV-1</h1>
+        <p>BANDA ACEH</p>
+      </div>
+    </div>
+
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="nav">
+      <ul>
+        <li><a href="#" class="active">Beranda</a></li>
+        <li><a href="#kelulusan">Kelulusan</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Selamat Datang di SMP Kartika XIV-1 Banda Aceh</h2>
+    <p>Mencetak Generasi Berkarakter Mulia, Berprestasi Akademik, dan Berjiwa Patriotisme</p>
+  </div>
+</section>
+
+<!-- PENGUMUMAN KELULUSAN -->
+<section class="section" id="kelulusan" style="background: #e8f0e8;">
+  <div class="container">
+    <div class="section-title">
+      <h3>Pengumuman Kelulusan Kelas 9</h3>
+      <p id="kelulusan-subtext">Masukkan NIS dan kata sandi untuk melihat hasil kelulusan</p>
+    </div>
+
+    <div class="kelulusan-box">
+      <div class="kelulusan-header">
+        <h4>Pengumuman Kelulusan</h4>
+        <p>SMP Kartika XIV-1 Banda Aceh<br>Tahun Ajaran 2025/2026</p>
+      </div>
+
+      <div class="kelulusan-content">
+        <div id="login-form">
+          <p style="margin-bottom: 20px; text-align: center; color: #666;">
+            Masukkan NIS dan Kata Sandi yang diberikan oleh wali kelas
+          </p>
+          <input type="text" id="nis" placeholder="Masukkan NIS" autocomplete="off">
+          <input type="password" id="password" placeholder="Masukkan Kata Sandi">
+          <button onclick="cekKelulusan()">Lihat Hasil</button>
+          <div class="error" id="error">NIS atau Kata Sandi salah!</div>
+        </div>
+
+        <div id="hasil">
+          <div class="nama-siswa" id="nama-siswa"></div>
+          <div class="status" id="status-kelulusan">LULUS</div>
+          <div class="info" id="info-tambahan"></div>
+          <button class="btn-logout" onclick="logout()">Cek NIS Lain</button>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:20px; font-size:14px; color:#666;">
+      Pastikan kamu sudah mendapat kata sandi dari wali kelas masing-masing
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="kontak" style="background:#0A3D0A; color:#fff; padding:40px 20px; text-align:center;">
+  <p>© 2026 SMP Kartika XIV-1 Banda Aceh</p>
+</footer>
+
+<!-- SCRIPT KELULUSAN -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // DATA 20 SISWA - GANTI PASSWORD & KETERANGAN DI SINI
+  const dataSiswa = {
+    "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5437": { password: "siswa003", nama: "DAHLUL FATAN", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5489": { password: "siswa004", nama: "DENATA GRACIA SIREGAR", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5418": { password: "siswa005", nama: "FATUR MAULANA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5441": { password: "siswa007", nama: "KHALISTA ZAHIRA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5488": { password: "siswa008", nama: "LIDYA NATACHA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5422": { password: "siswa009", nama: "M. AHYAR", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5423": { password: "siswa010", nama: "M. FERY MARSA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5520": { password: "siswa011", nama: "MUHAMMAD AFFAN ALTHARIQ TARIGAN", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5429": { password: "siswa014", nama: "NADIYATUL MISRA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5490": { password: "siswa015", nama: "NUR AISYAH", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5517": { password: "siswa016", nama: "OLAN FIRWANDA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5526": { password: "siswa018", nama: "RIFA FARIZAH", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5430": { password: "siswa019", nama: "SYAFA AULIA", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", keterangan: "Tunggu Informasi Selanjtnya" }
+  };
+
+  // MODE ADMIN: buka dengan?admin=123
+  const urlParams = new URLSearchParams(window.location.search);
+  const isAdmin = urlParams.get('admin') === '123';
+
+  if (isAdmin) {
+    document.getElementById('kelulusan-subtext').innerText = 'Mode Admin Aktif';
+    console.log("Mode Admin Aktif");
+
+    setTimeout(() => {
+      document.getElementById('kelulusan').scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  }
+
+  window.cekKelulusan = function() {
+    const nis = document.getElementById('nis').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const error = document.getElementById('error');
+
+    if (dataSiswa[nis] && dataSiswa[nis].password === password) {
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('hasil').style.display = 'block';
+      document.getElementById('nama-siswa').textContent = dataSiswa[nis].nama;
+      document.getElementById('info-tambahan').textContent = dataSiswa[nis].keterangan;
+      error.style.display = 'none';
+    } else {
+      error.style.display = 'block';
+    }
+  }
+
+  window.logout = function() {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('hasil').style.display = 'none';
+    document.getElementById('nis').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('error').style.display = 'none';
+  }
+
+  document.getElementById('password').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') cekKelulusan();
+  });
+
+  // Hamburger menu
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('nav').classList.toggle('active');
+    this.classList.toggle('active');
+  });
+
+});
+</script>
+
+</body>
+</html>
