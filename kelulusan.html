@@ -2,7 +2,7 @@
 <section class="section" id="kelulusan" style="background: #e8f0e8;">
   <div class="container">
     <div class="section-title">
-      <h3>Pengumuman Kelulusan Kelas 9</h3>
+      <h3 id="admin-trigger" style="cursor:pointer;">Pengumuman Kelulusan Kelas 9</h3>
       <p id="kelulusan-subtext">Halaman akan dibuka sesuai jadwal resmi sekolah</p>
     </div>
 
@@ -20,7 +20,6 @@
           <p style="font-size:16px; color:#333;">
             Mohon tunggu informasi lebih lanjut dari pihak sekolah.
           </p>
-          <p style="font-size:12px; color:#999; margin-top:30px;">Admin: Tekan Ctrl+Shift+A untuk akses</p>
         </div>
 
         <!-- FORM LOGIN -->
@@ -74,13 +73,17 @@
     "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
   };
 
-  // TOMBOL RAHASIA ADMIN: Ctrl + Shift + A
-  document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+  // TOMBOL RAHASIA ADMIN: Ketuk judul 5x
+  let tapCount = 0;
+  document.getElementById('admin-trigger').addEventListener('click', function() {
+    tapCount++;
+    if (tapCount >= 5) {
       document.getElementById('countdown-wrapper').style.display = 'none';
       document.getElementById('login-form').style.display = 'block';
       document.getElementById('kelulusan-subtext').innerText = 'Mode Admin Aktif';
+      tapCount = 0;
     }
+    setTimeout(() => { tapCount = 0; }, 2000); // reset kalau jeda >2 detik
   });
 
   window.cekKelulusan = function() {
