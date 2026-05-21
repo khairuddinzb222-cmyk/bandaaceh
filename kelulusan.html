@@ -3,7 +3,7 @@
   <div class="container">
     <div class="section-title">
       <h3>Pengumuman Kelulusan Kelas 9</h3>
-      <p id="kelulusan-subtext">Masukkan NIS dan kata sandi untuk melihat hasil kelulusan</p>
+      <p id="kelulusan-subtext">Halaman akan dibuka sesuai jadwal resmi sekolah</p>
     </div>
 
     <div class="kelulusan-box">
@@ -14,19 +14,16 @@
 
       <div class="kelulusan-content">
 
-        <!-- 1. TAMPILAN SEBELUM WAKTUNYA -->
-        <div id="countdown-wrapper" style="text-align:center; padding:40px 20px;">
-          <h2 style="color:#B91C1C; margin-bottom:15px;">Maaf, belum waktunya mengakses halaman kelulusan.</h2>
+        <!-- TAMPILAN PENGUMUMAN BELUM BUKA -->
+        <div id="countdown-wrapper" style="text-align:center; padding:60px 20px;">
+          <h2 style="color:#B91C1C; margin-bottom:15px;">Halaman akan dibuka sesuai jadwal resmi sekolah</h2>
           <p style="font-size:16px; color:#333;">
-            Pengumuman akan dibuka pada<br>
-            <strong id="tanggal-buka" style="font-size:18px; color:#0A3D0A;"></strong>
+            Mohon tunggu informasi lebih lanjut dari pihak sekolah.
           </p>
-          <p style="font-size:14px; color:#666; margin-top:15px;">
-            Tunggu hingga jadwal yang telah ditentukan.
-          </p>
+          <p style="font-size:12px; color:#999; margin-top:30px;">Admin: Tekan Ctrl+Shift+A untuk akses</p>
         </div>
 
-        <!-- 2. TAMPILAN SETELAH WAKTUNYA -->
+        <!-- FORM LOGIN -->
         <div id="login-form" style="display:none;">
           <p style="margin-bottom: 20px; text-align: center; color: #666;">
             Masukkan NIS dan Kata Sandi yang diberikan oleh wali kelas
@@ -53,112 +50,68 @@
 </section>
 
 <script>
-  // SETTING WAKTU BUKA PENGUMUMAN DI SINI
-  // 22 Mei 2026 18:00 WIB = 22 Mei 2026 11:00 UTC
-  const waktuBuka = new Date(Date.UTC(2026, 4, 22, 11, 0, 0));
-  const waktuBukaMs = waktuBuka.getTime();
+  // DATA SISWA
+  const dataSiswa = {
+    "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5441": { password: "siswa007", nama: "Khalista Zahira", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5488": { password: "siswa008", nama: "LIDYA NATACHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5422": { password: "siswa009", nama: "M. Ahyar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5423": { password: "siswa010", nama: "M. FERY MARSA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5520": { password: "siswa011", nama: "Muhammad Affan Althariq Tarigan", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5429": { password: "siswa014", nama: "NADIYATUL MISRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5490": { password: "siswa015", nama: "NUR AISYAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5517": { password: "siswa016", nama: "OLAN FIRWANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5526": { password: "siswa018", nama: "Rifa Farizah", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5430": { password: "siswa019", nama: "SYAFA AULIA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+    "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
+  };
 
-  // Fungsi utama dijalankan setelah HTML selesai load
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log("Script kelulusan jalan");
-
-    const countdownWrapper = document.getElementById('countdown-wrapper');
-    const loginForm = document.getElementById('login-form');
-    const subtext = document.getElementById('kelulusan-subtext');
-    const tanggalBukaEl = document.getElementById('tanggal-buka');
-
-    // Format tanggal jadi: Jumat, 22 Mei 2026 pukul 18.00 WIB
-    const opsiFormat = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    };
-    const tanggalFormat = waktuBuka.toLocaleDateString('id-ID', opsiFormat) + ' WIB';
-
-    if (tanggalBukaEl) {
-      tanggalBukaEl.innerText = tanggalFormat;
-    }
-
-    // Cek waktu saat halaman dibuka
-    function cekWaktu() {
-      const sekarang = new Date().getTime();
-
-      console.log("Sekarang:", new Date(sekarang));
-      console.log("Waktu Buka:", new Date(waktuBukaMs));
-      console.log("Sudah waktunya?", sekarang >= waktuBukaMs);
-
-      if (sekarang >= waktuBukaMs) {
-        // Sudah waktunya
-        countdownWrapper.style.display = "none";
-        loginForm.style.display = "block";
-        subtext.innerText = "Masukkan NIS dan kata sandi untuk melihat hasil kelulusan";
-      } else {
-        // Belum waktunya
-        countdownWrapper.style.display = "block";
-        loginForm.style.display = "none";
-        subtext.innerText = "Halaman akan dibuka sesuai jadwal resmi sekolah";
-      }
-    }
-
-    cekWaktu();
-
-    // DATA SISWA
-    const dataSiswa = {
-      "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5441": { password: "siswa007", nama: "Khalista Zahira", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5488": { password: "siswa008", nama: "LIDYA NATACHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5422": { password: "siswa009", nama: "M. Ahyar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5423": { password: "siswa010", nama: "M. FERY MARSA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5520": { password: "siswa011", nama: "Muhammad Affan Althariq Tarigan", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5429": { password: "siswa014", nama: "NADIYATUL MISRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5490": { password: "siswa015", nama: "NUR AISYAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5517": { password: "siswa016", nama: "OLAN FIRWANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5526": { password: "siswa018", nama: "Rifa Farizah", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5430": { password: "siswa019", nama: "SYAFA AULIA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
-    };
-
-    window.cekKelulusan = function() {
-      const nis = document.getElementById('nis').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const error = document.getElementById('error');
-
-      if (dataSiswa[nis] && dataSiswa[nis].password === password) {
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('hasil').style.display = 'block';
-        document.getElementById('nama-siswa').textContent = dataSiswa[nis].nama;
-        document.getElementById('info-tambahan').textContent = dataSiswa[nis].keterangan;
-        error.style.display = 'none';
-      } else {
-        error.style.display = 'block';
-      }
-    }
-
-    window.logout = function() {
+  // TOMBOL RAHASIA ADMIN: Ctrl + Shift + A
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+      document.getElementById('countdown-wrapper').style.display = 'none';
       document.getElementById('login-form').style.display = 'block';
-      document.getElementById('hasil').style.display = 'none';
-      document.getElementById('nis').value = '';
-      document.getElementById('password').value = '';
-    }
-
-    const passwordInput = document.getElementById('password');
-    if (passwordInput) {
-      passwordInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') cekKelulusan();
-      });
+      document.getElementById('kelulusan-subtext').innerText = 'Mode Admin Aktif';
     }
   });
+
+  window.cekKelulusan = function() {
+    const nis = document.getElementById('nis').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const error = document.getElementById('error');
+
+    if (dataSiswa[nis] && dataSiswa[nis].password === password) {
+      document.getElementById('login-form').style.display = 'none';
+      document.getElementById('hasil').style.display = 'block';
+      document.getElementById('nama-siswa').textContent = dataSiswa[nis].nama;
+      document.getElementById('info-tambahan').textContent = dataSiswa[nis].keterangan;
+      error.style.display = 'none';
+    } else {
+      error.style.display = 'block';
+    }
+  }
+
+  window.logout = function() {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('hasil').style.display = 'none';
+    document.getElementById('nis').value = '';
+    document.getElementById('password').value = '';
+  }
+
+  const passwordInput = document.getElementById('password');
+  if (passwordInput) {
+    passwordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') cekKelulusan();
+    });
+  }
 </script>
 
 </body>
