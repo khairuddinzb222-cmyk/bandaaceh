@@ -54,94 +54,104 @@
 
 <script>
   // SETTING WAKTU BUKA PENGUMUMAN DI SINI
-  const waktuBuka = new Date(2026, 4, 22, 18, 0, 0); // 22 Mei 2026, 18:00 WIB
+  const waktuBuka = new Date(2026, 4, 22, 18, 0, 0); // 22 Mei 2026, 18:00 WIB. Bulan Mei = 4
   const waktuBukaMs = waktuBuka.getTime();
 
-  const countdownWrapper = document.getElementById('countdown-wrapper');
-  const loginForm = document.getElementById('login-form');
-  const subtext = document.getElementById('kelulusan-subtext');
-  const tanggalBukaEl = document.getElementById('tanggal-buka');
+  // Fungsi utama dijalankan setelah HTML selesai load
+  document.addEventListener('DOMContentLoaded', function() {
 
-  // Format tanggal jadi: Jumat, 22 Mei 2026 - 18:00 WIB
-  const opsiFormat = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  };
-  const tanggalFormat = waktuBuka.toLocaleDateString('id-ID', opsiFormat) + ' WIB';
-  tanggalBukaEl.innerText = tanggalFormat;
+    const countdownWrapper = document.getElementById('countdown-wrapper');
+    const loginForm = document.getElementById('login-form');
+    const subtext = document.getElementById('kelulusan-subtext');
+    const tanggalBukaEl = document.getElementById('tanggal-buka');
 
-  // Cek waktu saat halaman dibuka
-  function cekWaktu() {
-    const sekarang = new Date().getTime();
+    // Format tanggal jadi: Jumat, 22 Mei 2026 pukul 18.00 WIB
+    const opsiFormat = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    const tanggalFormat = waktuBuka.toLocaleDateString('id-ID', opsiFormat) + ' WIB';
 
-    if (sekarang >= waktuBukaMs) {
-      // Sudah waktunya
-      countdownWrapper.style.display = "none";
-      loginForm.style.display = "block";
-      subtext.innerText = "Masukkan NIS dan kata sandi untuk melihat hasil kelulusan";
-    } else {
-      // Belum waktunya
-      countdownWrapper.style.display = "block";
-      loginForm.style.display = "none";
-      subtext.innerText = "Halaman akan dibuka sesuai jadwal resmi sekolah";
+    if (tanggalBukaEl) {
+      tanggalBukaEl.innerText = tanggalFormat;
     }
-  }
 
-  cekWaktu();
+    // Cek waktu saat halaman dibuka
+    function cekWaktu() {
+      const sekarang = new Date().getTime();
 
-  // DATA SISWA
-  const dataSiswa = {
-    "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5441": { password: "siswa007", nama: "Khalista Zahira", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5488": { password: "siswa008", nama: "LIDYA NATACHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5422": { password: "siswa009", nama: "M. Ahyar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5423": { password: "siswa010", nama: "M. FERY MARSA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5520": { password: "siswa011", nama: "Muhammad Affan Althariq Tarigan", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5429": { password: "siswa014", nama: "NADIYATUL MISRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5490": { password: "siswa015", nama: "NUR AISYAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5517": { password: "siswa016", nama: "OLAN FIRWANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5526": { password: "siswa018", nama: "Rifa Farizah", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5430": { password: "siswa019", nama: "SYAFA AULIA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
-  };
-
-  function cekKelulusan() {
-    const nis = document.getElementById('nis').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const error = document.getElementById('error');
-
-    if (dataSiswa[nis] && dataSiswa[nis].password === password) {
-      document.getElementById('login-form').style.display = 'none';
-      document.getElementById('hasil').style.display = 'block';
-      document.getElementById('nama-siswa').textContent = dataSiswa[nis].nama;
-      document.getElementById('info-tambahan').textContent = dataSiswa[nis].keterangan;
-      error.style.display = 'none';
-    } else {
-      error.style.display = 'block';
+      if (sekarang >= waktuBukaMs) {
+        // Sudah waktunya
+        countdownWrapper.style.display = "none";
+        loginForm.style.display = "block";
+        subtext.innerText = "Masukkan NIS dan kata sandi untuk melihat hasil kelulusan";
+      } else {
+        // Belum waktunya
+        countdownWrapper.style.display = "block";
+        loginForm.style.display = "none";
+        subtext.innerText = "Halaman akan dibuka sesuai jadwal resmi sekolah";
+      }
     }
-  }
 
-  function logout() {
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('hasil').style.display = 'none';
-    document.getElementById('nis').value = '';
-    document.getElementById('password').value = '';
-  }
+    cekWaktu();
 
-  document.getElementById('password').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') cekKelulusan();
+    // DATA SISWA
+    const dataSiswa = {
+      "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5441": { password: "siswa007", nama: "Khalista Zahira", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5488": { password: "siswa008", nama: "LIDYA NATACHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5422": { password: "siswa009", nama: "M. Ahyar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5423": { password: "siswa010", nama: "M. FERY MARSA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5520": { password: "siswa011", nama: "Muhammad Affan Althariq Tarigan", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5429": { password: "siswa014", nama: "NADIYATUL MISRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5490": { password: "siswa015", nama: "NUR AISYAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5517": { password: "siswa016", nama: "OLAN FIRWANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5526": { password: "siswa018", nama: "Rifa Farizah", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5430": { password: "siswa019", nama: "SYAFA AULIA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
+    };
+
+    window.cekKelulusan = function() {
+      const nis = document.getElementById('nis').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const error = document.getElementById('error');
+
+      if (dataSiswa[nis] && dataSiswa[nis].password === password) {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('hasil').style.display = 'block';
+        document.getElementById('nama-siswa').textContent = dataSiswa[nis].nama;
+        document.getElementById('info-tambahan').textContent = dataSiswa[nis].keterangan;
+        error.style.display = 'none';
+      } else {
+        error.style.display = 'block';
+      }
+    }
+
+    window.logout = function() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('hasil').style.display = 'none';
+      document.getElementById('nis').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    const passwordInput = document.getElementById('password');
+    if (passwordInput) {
+      passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') cekKelulusan();
+      });
+    }
   });
 </script>
 
