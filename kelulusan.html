@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMP Kartika XIV-1 Banda Aceh</title>
+  <title>SMP Kartika XIV-1 Banda Aceh - Pengumuman Kelulusan</title>
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       margin: 0;
       padding: 0;
       background: #f5f5f5;
@@ -53,7 +54,6 @@
       margin: 8px 0 15px 0;
       border: 1px solid #ccc;
       border-radius: 8px;
-      box-sizing: border-box;
       font-size: 16px;
     }
     button {
@@ -65,6 +65,7 @@
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
+      font-weight: bold;
     }
     button:hover {
       background: #1B5E20;
@@ -76,13 +77,14 @@
       margin-top: 10px;
     }
    .nama-siswa {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
       text-align: center;
       margin-bottom: 15px;
+      color: #2E7D32;
     }
    .status {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: bold;
       text-align: center;
       color: #2E7D32;
@@ -91,6 +93,7 @@
    .info {
       text-align: center;
       color: #555;
+      font-size: 16px;
     }
    .btn-logout {
       margin-top: 20px;
@@ -99,12 +102,18 @@
    .btn-logout:hover {
       background: #444;
     }
+    header {
+      background:#fff;
+      padding:20px;
+      text-align:center;
+      border-bottom:1px solid #ddd;
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER SEKOLAH -->
-  <header style="background:#fff; padding:20px; text-align:center; border-bottom:1px solid #ddd;">
+  <header>
     <h2 style="margin:0; color:#2E7D32;">SMP KARTIKA XIV-1</h2>
     <p style="margin:0; color:#666;">BANDA ACEH</p>
   </header>
@@ -177,14 +186,28 @@
   <script>
   document.addEventListener('DOMContentLoaded', function() {
 
-    // DATA SISWA - GANTI SESUAI DATA KAMU
+    // DATA SEMUA SISWA KELAS 9
     const dataSiswa = {
       "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
       "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
       "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-      "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
-      // Tambah data siswa lainnya di sini, formatnya sama
+      "5489": { password: "siswa004", nama: "DENATA GRACIA SIREGAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5418": { password: "siswa005", nama: "FATUR MAULANA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5441": { password: "siswa007", nama: "KHALISTA ZAHIRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5488": { password: "siswa008", nama: "LIDYA NATACHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5422": { password: "siswa009", nama: "M. AHYAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5423": { password: "siswa010", nama: "M. FERY MARSA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5520": { password: "siswa011", nama: "MUHAMMAD AFFAN ALTHARIQ TARIGAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5429": { password: "siswa014", nama: "NADIYATUL MISRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5490": { password: "siswa015", nama: "NUR AISYAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5517": { password: "siswa016", nama: "OLAN FIRWANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5526": { password: "siswa018", nama: "RIFA FARIZAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5430": { password: "siswa019", nama: "SYAFA AULIA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
     };
 
     // CEK URL?admin=123
@@ -200,6 +223,11 @@
       loginForm.style.display = 'block';
       if(subtext) subtext.innerText = 'Mode Admin Aktif';
       console.log("Mode Admin Aktif - Form ditampilkan");
+
+      // Auto scroll ke section kelulusan
+      setTimeout(() => {
+        document.getElementById('kelulusan').scrollIntoView({ behavior: 'smooth' });
+      }, 300);
     }
 
     window.cekKelulusan = function() {
