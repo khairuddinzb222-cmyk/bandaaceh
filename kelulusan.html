@@ -73,10 +73,10 @@
     "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
   };
 
-  // CEK APAKAH URL ADA?admin=123
-  const urlParams = new URLSearchParams(window.location.search);
-  const isAdmin = urlParams.get('admin') === '123';
-
+  // CEK APAKAH URL ADA ?admin=123
+const urlParams = new URLSearchParams(window.location.search);
+const isAdmin = urlParams.get('admin') === '123';
+  
   if (isAdmin) {
     document.getElementById('countdown-wrapper').style.display = 'none';
     document.getElementById('login-form').style.display = 'block';
