@@ -82,20 +82,20 @@
 
     // Cek waktu saat halaman dibuka
     function cekWaktu() {
-      const sekarang = new Date().getTime();
+  const sekarang = new Date().getTime();
+  
+  console.log("Sekarang:", new Date(sekarang));
+  console.log("Waktu Buka:", new Date(waktuBukaMs));
+  console.log("Sudah waktunya?", sekarang >= waktuBukaMs);
 
-      if (sekarang >= waktuBukaMs) {
-        // Sudah waktunya
-        countdownWrapper.style.display = "none";
-        loginForm.style.display = "block";
-        subtext.innerText = "Masukkan NIS dan kata sandi untuk melihat hasil kelulusan";
-      } else {
-        // Belum waktunya
-        countdownWrapper.style.display = "block";
-        loginForm.style.display = "none";
-        subtext.innerText = "Halaman akan dibuka sesuai jadwal resmi sekolah";
-      }
-    }
+  if (sekarang >= waktuBukaMs) {
+    countdownWrapper.style.display = "none";
+    loginForm.style.display = "block";
+  } else {
+    countdownWrapper.style.display = "block";
+    loginForm.style.display = "none";
+  }
+}
 
     cekWaktu();
 
