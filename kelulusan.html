@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMP Kartika XIV-1 Banda Aceh</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+   .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+   .section {
+      padding: 60px 0;
+    }
+   .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+   .section-title h3 {
+      font-size: 28px;
+      color: #2E7D32;
+      margin-bottom: 10px;
+    }
+   .kelulusan-box {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+   .kelulusan-header {
+      background: #2E7D32;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+   .kelulusan-header h4 {
+      margin: 0 0 5px 0;
+      font-size: 22px;
+    }
+   .kelulusan-content {
+      padding: 30px;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #2E7D32;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1B5E20;
+    }
+   .error {
+      color: #B91C1C;
+      text-align: center;
+      display: none;
+      margin-top: 10px;
+    }
+   .nama-siswa {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+   .status {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      color: #2E7D32;
+      margin-bottom: 15px;
+    }
+   .info {
+      text-align: center;
+      color: #555;
+    }
+   .btn-logout {
+      margin-top: 20px;
+      background: #666;
+    }
+   .btn-logout:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER SEKOLAH -->
+  <header style="background:#fff; padding:20px; text-align:center; border-bottom:1px solid #ddd;">
+    <h2 style="margin:0; color:#2E7D32;">SMP KARTIKA XIV-1</h2>
+    <p style="margin:0; color:#666;">BANDA ACEH</p>
+  </header>
+
+  <!-- VIDEO KEGIATAN -->
+  <section class="section" style="background:#fff;">
+    <div class="container">
+      <div class="section-title">
+        <h3>Video Kegiatan Sekolah</h3>
+        <p>Dokumentasi kegiatan terbaru SMP Kartika XIV-1 Banda Aceh</p>
+      </div>
+      <div style="text-align:center;">
+        <p>Konten video kamu taruh di sini</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENGUMUMAN KELULUSAN -->
+  <section class="section" id="kelulusan" style="background: #e8f0e8;">
+    <div class="container">
+      <div class="section-title">
+        <h3>Pengumuman Kelulusan Kelas 9</h3>
+        <p id="kelulusan-subtext">Halaman akan dibuka sesuai jadwal resmi sekolah</p>
+      </div>
+
+      <div class="kelulusan-box">
+        <div class="kelulusan-header">
+          <h4>Pengumuman Kelulusan</h4>
+          <p>SMP Kartika XIV-1 Banda Aceh<br>Tahun Ajaran 2025/2026</p>
+        </div>
+
+        <div class="kelulusan-content">
+
+          <!-- TAMPILAN PENGUMUMAN BELUM BUKA -->
+          <div id="countdown-wrapper" style="text-align:center; padding:60px 20px;">
+            <h2 style="color:#B91C1C; margin-bottom:15px;">Halaman akan dibuka sesuai jadwal resmi sekolah</h2>
+            <p style="font-size:16px; color:#333;">
+              Mohon tunggu informasi lebih lanjut dari pihak sekolah.
+            </p>
+          </div>
+
+          <!-- FORM LOGIN -->
+          <div id="login-form" style="display:none;">
+            <p style="margin-bottom: 20px; text-align: center; color: #666;">
+              Masukkan NIS dan Kata Sandi yang diberikan oleh wali kelas
+            </p>
+            <input type="text" id="nis" placeholder="Masukkan NIS" autocomplete="off">
+            <input type="password" id="password" placeholder="Masukkan Kata Sandi">
+            <button onclick="cekKelulusan()">Lihat Hasil</button>
+            <div class="error" id="error">NIS atau Kata Sandi salah!</div>
+          </div>
+
+          <!-- HASIL KELULUSAN -->
+          <div id="hasil" style="display:none;">
+            <div class="nama-siswa" id="nama-siswa"></div>
+            <div class="status" id="status-kelulusan">LULUS</div>
+            <div class="info" id="info-tambahan"></div>
+            <button class="btn-logout" onclick="logout()">Cek NIS Lain</button>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align:center; margin-top:20px; font-size:14px; color:#666;">
+        Pastikan kamu sudah mendapat kata sandi dari wali kelas masing-masing
+      </p>
+    </div>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // DATA SISWA - GANTI SESUAI DATA KAMU
+    const dataSiswa = {
+      "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
+      "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
+      // Tambah data siswa lainnya di sini, formatnya sama
+    };
+
+    // CEK URL?admin=123
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.get('admin') === '123';
+
+    const countdown = document.getElementById('countdown-wrapper');
+    const loginForm = document.getElementById('login-form');
+    const subtext = document.getElementById('kelulusan-subtext');
+
+    if (isAdmin && countdown && loginForm) {
+      countdown.style.display = 'none';
+      loginForm.style.display = 'block';
+      if(subtext) subtext.innerText = 'Mode Admin Aktif';
+      console.log("Mode Admin Aktif - Form ditampilkan");
+    }
+
+    window.cekKelulusan = function() {
+      const nis = document.getElementById('nis').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const error = document.getElementById('error');
+
+      if (dataSiswa[nis] && dataSiswa[nis].password === password) {
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('hasil').style.display = 'block';
+        document.getElementById('nama-siswa').textContent = dataSiswa[nis].nama;
+        document.getElementById('info-tambahan').textContent = dataSiswa[nis].keterangan;
+        error.style.display = 'none';
+      } else {
+        error.style.display = 'block';
+      }
+    }
+
+    window.logout = function() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('hasil').style.display = 'none';
+      document.getElementById('nis').value = '';
+      document.getElementById('password').value = '';
+    }
+
+    // Enter untuk submit
+    const passwordInput = document.getElementById('password');
+    if (passwordInput) {
+      passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') cekKelulusan();
+      });
+    }
+
+  });
+  </script>
+
+</body>
+</html>
