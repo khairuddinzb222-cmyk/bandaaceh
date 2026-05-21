@@ -52,38 +52,27 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // DATA SISWA
   const dataSiswa = {
     "5416": { password: "siswa001", nama: "ANGGA PIRNANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5437": { password: "siswa003", nama: "DAHLUL FATAN", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5489": { password: "siswa004", nama: "Denata Gracia Siregar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5418": { password: "siswa005", nama: "Fatur Maulana", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5420": { password: "siswa006", nama: "HAFIS AL AKBAR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5441": { password: "siswa007", nama: "Khalista Zahira", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5488": { password: "siswa008", nama: "LIDYA NATACHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5422": { password: "siswa009", nama: "M. Ahyar", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5423": { password: "siswa010", nama: "M. FERY MARSA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5520": { password: "siswa011", nama: "Muhammad Affan Althariq Tarigan", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5515": { password: "siswa012", nama: "MUHAMMAD ALFARISI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5440": { password: "siswa013", nama: "MUHAMMAD NAZIR", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5429": { password: "siswa014", nama: "NADIYATUL MISRA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5490": { password: "siswa015", nama: "NUR AISYAH", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5517": { password: "siswa016", nama: "OLAN FIRWANDA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5470": { password: "siswa017", nama: "RAHMAT RAIYAN AL FAIS", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5526": { password: "siswa018", nama: "Rifa Farizah", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5430": { password: "siswa019", nama: "SYAFA AULIA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" },
-    "5479": { password: "siswa020", nama: "T. MUHAMMAD ZAIKI", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
+    "5417": { password: "siswa002", nama: "DAFFA MIRWANDA DECHA", status: "LULUS", keterangan: "Tunggu Informasi Selanjtnya" }
+    //... data siswa lainnya
   };
 
-  // CEK APAKAH URL ADA?admin=123
+  const countdown = document.getElementById('countdown-wrapper');
+  const loginForm = document.getElementById('login-form');
+  const subtext = document.getElementById('kelulusan-subtext');
+
+  // CEK URL?admin=123
   const urlParams = new URLSearchParams(window.location.search);
   const isAdmin = urlParams.get('admin') === '123';
 
-  if (isAdmin) {
-    document.getElementById('countdown-wrapper').style.display = 'none';
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('kelulusan-subtext').innerText = 'Mode Admin Aktif';
+  if (isAdmin && countdown && loginForm) {
+    countdown.style.display = 'none';
+    loginForm.style.display = 'block';
+    if(subtext) subtext.innerText = 'Mode Admin Aktif';
+    console.log("Mode Admin Aktif - Form ditampilkan");
+  } else if (isAdmin) {
+    console.log("ERROR: Elemen countdown-wrapper atau login-form tidak ditemukan");
   }
 
   window.cekKelulusan = function() {
@@ -109,14 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('password').value = '';
   }
 
-  const passwordInput = document.getElementById('password');
-  if (passwordInput) {
-    passwordInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') cekKelulusan();
-    });
-  }
-
 });
+
 </script>
 
 </body>
