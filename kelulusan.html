@@ -54,11 +54,13 @@
 
 <script>
   // SETTING WAKTU BUKA PENGUMUMAN DI SINI
-  const waktuBuka = new Date(2026, 4, 22, 18, 0, 0); // 22 Mei 2026 18:00 WIB = 22 Mei 2026 11:00 UTC
-const waktuBuka = new Date(Date.UTC(2026, 4, 22, 11, 0, 0));
+  // 22 Mei 2026 18:00 WIB = 22 Mei 2026 11:00 UTC
+  const waktuBuka = new Date(Date.UTC(2026, 4, 22, 11, 0, 0));
+  const waktuBukaMs = waktuBuka.getTime();
 
   // Fungsi utama dijalankan setelah HTML selesai load
   document.addEventListener('DOMContentLoaded', function() {
+    console.log("Script kelulusan jalan");
 
     const countdownWrapper = document.getElementById('countdown-wrapper');
     const loginForm = document.getElementById('login-form');
@@ -82,20 +84,24 @@ const waktuBuka = new Date(Date.UTC(2026, 4, 22, 11, 0, 0));
 
     // Cek waktu saat halaman dibuka
     function cekWaktu() {
-  const sekarang = new Date().getTime();
-  
-  console.log("Sekarang:", new Date(sekarang));
-  console.log("Waktu Buka:", new Date(waktuBukaMs));
-  console.log("Sudah waktunya?", sekarang >= waktuBukaMs);
+      const sekarang = new Date().getTime();
 
-  if (sekarang >= waktuBukaMs) {
-    countdownWrapper.style.display = "none";
-    loginForm.style.display = "block";
-  } else {
-    countdownWrapper.style.display = "block";
-    loginForm.style.display = "none";
-  }
-}
+      console.log("Sekarang:", new Date(sekarang));
+      console.log("Waktu Buka:", new Date(waktuBukaMs));
+      console.log("Sudah waktunya?", sekarang >= waktuBukaMs);
+
+      if (sekarang >= waktuBukaMs) {
+        // Sudah waktunya
+        countdownWrapper.style.display = "none";
+        loginForm.style.display = "block";
+        subtext.innerText = "Masukkan NIS dan kata sandi untuk melihat hasil kelulusan";
+      } else {
+        // Belum waktunya
+        countdownWrapper.style.display = "block";
+        loginForm.style.display = "none";
+        subtext.innerText = "Halaman akan dibuka sesuai jadwal resmi sekolah";
+      }
+    }
 
     cekWaktu();
 
