@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: khairuddinzb222-cmyk/bandaaceh
+  name: git-gateway
   branch: main
 
 media_folder: "uploads"
