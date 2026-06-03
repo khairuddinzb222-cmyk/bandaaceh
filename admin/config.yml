@@ -1,18 +1,18 @@
 backend:
   name: git-gateway
   branch: main
-  repo: smpkartikaxiv1-cloud/bandaaceh
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "uploads"
+public_folder: "/uploads"
 
 collections:
-    - name: "page"
-    label: "Halaman"
-    files:
-            - file: "index.html"
-        label: "Beranda"
-        name: "beranda"
-        fields:
-                    - {label: "Judul", name: "title", widget: "string"}
-                    - {label: "Konten", name: "body", widget: "markdown"}
+    - name: "berita"
+    label: "Berita"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+            - {label: "Judul", name: "title", widget: "string"}
+            - {label: "Tanggal", name: "date", widget: "datetime"}
+            - {label: "Gambar", name: "thumbnail", widget: "image"}
+            - {label: "Isi", name: "body", widget: "markdown"}
