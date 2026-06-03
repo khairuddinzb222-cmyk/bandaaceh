@@ -1,11 +1,18 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>Content Manager</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-</html>
+backend:
+  name: git-gateway
+  branch: main
+  repo: smpkartikaxiv1-cloud/bandaaceh
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+    - name: "page"
+    label: "Halaman"
+    files:
+            - file: "index.html"
+        label: "Beranda"
+        name: "beranda"
+        fields:
+                    - {label: "Judul", name: "title", widget: "string"}
+                    - {label: "Konten", name: "body", widget: "markdown"}
