@@ -7,13 +7,13 @@ media_folder: "uploads"
 public_folder: "/uploads"
 
 collections:
-    - name: "berita"
+  - name: "berita"
     label: "Berita"
     folder: "_posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-            - {label: "Judul", name: "title", widget: "string"}
-            - {label: "Tanggal", name: "date", widget: "datetime"}
-            - {label: "Gambar", name: "thumbnail", widget: "image"}
-            - {label: "Isi", name: "body", widget: "markdown"}
+      - {label: "Judul", name: "title", widget: "string"}
+      - {label: "Tanggal", name: "date", widget: "datetime"}
+      - {label: "Gambar", name: "thumbnail", widget: "image"}
+      - {label: "Isi", name: "body", widget: "markdown"}
