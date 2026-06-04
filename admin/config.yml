@@ -7,70 +7,70 @@ media_folder: "static/uploads"
 public_folder: "/uploads"
 
 collections:
-    - name: "profil"
+  - name: "profil"
     label: "Profil Sekolah"
     file: "admin/content/profil.md"
     fields:
-            - {label: "Sejarah", name: "sejarah", widget: "markdown"}
-            - {label: "Visi", name: "visi", widget: "text"}
-            - {label: "Misi", name: "misi", widget: "markdown"}
-            - {label: "Sambutan Kepsek", name: "sambutan", widget: "markdown"}
+      - {label: "Sejarah", name: "sejarah", widget: "markdown"}
+      - {label: "Visi", name: "visi", widget: "text"}
+      - {label: "Misi", name: "misi", widget: "markdown"}
+      - {label: "Sambutan Kepsek", name: "sambutan", widget: "markdown"}
 
-    - name: "berita"
+  - name: "berita"
     label: "Berita"
     folder: "admin/content/berita"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-            - {label: "Judul", name: "title", widget: "string"}
-            - {label: "Tanggal", name: "date", widget: "datetime"}
-            - {label: "Deskripsi", name: "description", widget: "text"}
-            - {label: "Gambar", name: "thumbnail", widget: "image"}
-            - {label: "Isi Berita", name: "body", widget: "markdown"}
+      - {label: "Judul", name: "title", widget: "string"}
+      - {label: "Tanggal", name: "date", widget: "datetime"}
+      - {label: "Deskripsi", name: "description", widget: "text"}
+      - {label: "Gambar", name: "thumbnail", widget: "image"}
+      - {label: "Isi Berita", name: "body", widget: "markdown"}
 
-    - name: "guru"
+  - name: "guru"
     label: "Data Guru"
     folder: "admin/content/guru"
     create: true
     fields:
-            - {label: "Nama", name: "title", widget: "string"}
-            - {label: "Foto", name: "image", widget: "image"}
-            - {label: "Jabatan", name: "jabatan", widget: "string"}
-            - {label: "Mata Pelajaran", name: "mapel", widget: "string"}
+      - {label: "Nama", name: "title", widget: "string"}
+      - {label: "Foto", name: "image", widget: "image"}
+      - {label: "Jabatan", name: "jabatan", widget: "string"}
+      - {label: "Mata Pelajaran", name: "mapel", widget: "string"}
 
-    - name: "kegiatan"
+  - name: "kegiatan"
     label: "Kegiatan/Ekskul"
     folder: "admin/content/kegiatan"
     create: true
     fields:
-            - {label: "Nama Kegiatan", name: "title", widget: "string"}
-            - {label: "Foto", name: "image", widget: "image"}
-            - {label: "Deskripsi", name: "body", widget: "markdown"}
+      - {label: "Nama Kegiatan", name: "title", widget: "string"}
+      - {label: "Foto", name: "image", widget: "image"}
+      - {label: "Deskripsi", name: "body", widget: "markdown"}
 
-    - name: "kelulusan"
+  - name: "kelulusan"
     label: "Data Kelulusan"
     folder: "admin/content/kelulusan"
     create: true
     fields:
-            - {label: "Tahun Ajaran", name: "title", widget: "string"}
-            - {label: "Jumlah Lulus", name: "jumlah", widget: "number"}
-            - {label: "Persentase", name: "persen", widget: "string"}
-            - {label: "Keterangan", name: "body", widget: "markdown"}
+      - {label: "Tahun Ajaran", name: "title", widget: "string"}
+      - {label: "Jumlah Lulus", name: "jumlah", widget: "number"}
+      - {label: "Persentase", name: "persen", widget: "string"}
+      - {label: "Keterangan", name: "body", widget: "markdown"}
 
-    - name: "video"
+  - name: "video"
     label: "Video Youtube"
     folder: "admin/content/video"
     create: true
     fields:
-            - {label: "Judul Video", name: "title", widget: "string"}
-            - {label: "Link Youtube", name: "url", widget: "string"}
+      - {label: "Judul Video", name: "title", widget: "string"}
+      - {label: "Link Youtube", name: "url", widget: "string"}
 
-    - name: "kontak"
+  - name: "kontak"
     label: "Kontak Sekolah"
     file: "admin/content/kontak.md"
     fields:
-            - {label: "Alamat", name: "alamat", widget: "text", default: "Jl. Nyak Adam Kamil II, Peuniti\nKec. Baiturrahman, Banda Aceh\nAceh 23111"}
-            - {label: "Telepon", name: "telepon", widget: "string", default: "0651-3432"}
-            - {label: "Email", name: "email", widget: "string", default: "smpkartikaxiv1@gmail.com"}
-            - {label: "Jam Layanan", name: "jam_layanan", widget: "markdown", default: "Senin - Jumat: 07:30 - 15:00 WIB\nSabtu: 07:30 - 12:00 WIB\nMinggu: Libur"}
-            - {label: "Link Google Maps Embed", name: "maps", widget: "text"}
+      - {label: "Alamat", name: "alamat", widget: "text", default: "Jl. Nyak Adam Kamil II, Peuniti\nKec. Baiturrahman, Banda Aceh\nAceh 23111"}
+      - {label: "Telepon", name: "telepon", widget: "string", default: "0651-3432"}
+      - {label: "Email", name: "email", widget: "string", default: "smpkartikaxiv1@gmail.com"}
+      - {label: "Jam Layanan", name: "jam_layanan", widget: "markdown", default: "Senin - Jumat: 07:30 - 15:00 WIB\nSabtu: 07:30 - 12:00 WIB\nMinggu: Libur"}
+      - {label: "Link Google Maps Embed", name: "maps", widget: "text"}
