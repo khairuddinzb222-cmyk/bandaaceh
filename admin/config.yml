@@ -7,14 +7,18 @@ media_folder: "static/uploads"
 public_folder: "/uploads"
 
 collections:
-  - name: "profil"
+  - name: "profil_sekolah"
     label: "Profil Sekolah"
-    file: "admin/content/profil.md"
-    fields:
-      - {label: "Sejarah", name: "sejarah", widget: "markdown"}
-      - {label: "Visi", name: "visi", widget: "text"}
-      - {label: "Misi", name: "misi", widget: "markdown"}
-      - {label: "Sambutan Kepsek", name: "sambutan", widget: "markdown"}
+    delete: false
+    files:
+      - name: "profil"
+        label: "Isi Profil Sekolah"
+        file: "admin/content/profil.md"
+        fields:
+          - {label: "Sejarah", name: "sejarah", widget: "markdown"}
+          - {label: "Visi", name: "visi", widget: "text"}
+          - {label: "Misi", name: "misi", widget: "markdown"}
+          - {label: "Sambutan Kepsek", name: "sambutan", widget: "markdown"}
 
   - name: "berita"
     label: "Berita"
@@ -65,12 +69,16 @@ collections:
       - {label: "Judul Video", name: "title", widget: "string"}
       - {label: "Link Youtube", name: "url", widget: "string"}
 
-  - name: "kontak"
+  - name: "kontak_sekolah"
     label: "Kontak Sekolah"
-    file: "admin/content/kontak.md"
-    fields:
-      - {label: "Alamat", name: "alamat", widget: "text", default: "Jl. Nyak Adam Kamil II, Peuniti\nKec. Baiturrahman, Banda Aceh\nAceh 23111"}
-      - {label: "Telepon", name: "telepon", widget: "string", default: "0651-3432"}
-      - {label: "Email", name: "email", widget: "string", default: "smpkartikaxiv1@gmail.com"}
-      - {label: "Jam Layanan", name: "jam_layanan", widget: "markdown", default: "Senin - Jumat: 07:30 - 15:00 WIB\nSabtu: 07:30 - 12:00 WIB\nMinggu: Libur"}
-      - {label: "Link Google Maps Embed", name: "maps", widget: "text"}
+    delete: false
+    files:
+      - name: "kontak"
+        label: "Isi Kontak Sekolah"
+        file: "admin/content/kontak.md"
+        fields:
+          - {label: "Alamat", name: "alamat", widget: "text", default: "Jl. Nyak Adam Kamil II, Peuniti\nKec. Baiturrahman, Banda Aceh\nAceh 23111"}
+          - {label: "Telepon", name: "telepon", widget: "string", default: "0651-3432"}
+          - {label: "Email", name: "email", widget: "string", default: "smpkartikaxiv1@gmail.com"}
+          - {label: "Jam Layanan", name: "jam_layanan", widget: "markdown", default: "Senin - Jumat: 07:30 - 15:00 WIB\nSabtu: 07:30 - 12:00 WIB\nMinggu: Libur"}
+          - {label: "Link Google Maps Embed", name: "maps", widget: "text"}
